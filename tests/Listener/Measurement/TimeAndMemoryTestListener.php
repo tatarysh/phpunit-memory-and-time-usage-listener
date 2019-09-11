@@ -4,8 +4,9 @@ namespace PhpunitMemoryAndTimeUsageListener\Listener\Measurement;
 
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestListener;
+use PHPUnit\Framework\TestListenerDefaultImplementation;
 use PHPUnit\Framework\TestSuite;
-use PHPUnit\Runner\TestHook;
 use PhpunitMemoryAndTimeUsageListener\Domain\Measurement\MemoryMeasurement;
 use PhpunitMemoryAndTimeUsageListener\Domain\Measurement\TestMeasurement;
 use PhpunitMemoryAndTimeUsageListener\Domain\Measurement\TimeMeasurement;
@@ -13,8 +14,10 @@ use PhpunitMemoryAndTimeUsageListener\Domain\Measurement\TimeMeasurement;
 /**
  * Class TimeAndMemoryTestListener
  */
-class TimeAndMemoryTestListener implements TestHook
+class TimeAndMemoryTestListener implements TestListener
 {
+    use TestListenerDefaultImplementation;
+
     /**
      * @var int
      */
