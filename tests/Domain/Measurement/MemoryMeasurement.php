@@ -2,22 +2,38 @@
 
 namespace PhpunitMemoryAndTimeUsageListener\Domain\Measurement;
 
-class MemoryMeasurement extends Measurement
+/**
+ * Class MemoryMeasurement
+ */
+class MemoryMeasurement implements Measurement
 {
-    public function __construct($quantity)
+    /**
+     * @var float
+     */
+    private $quantity;
+
+    /**
+     * MemoryMeasurement constructor.
+     *
+     * @param  float  $quantity
+     */
+    public function __construct(float $quantity)
     {
-        parent::__construct($quantity, $this->measurementUnit());
+        $this->quantity = $quantity;
     }
 
-    public function measurementUnit()
+    /**
+     * @return string
+     */
+    public function unit(): string
     {
         return 'bytes';
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function memoryInKiloBytes()
+    public function score(): float
     {
         return $this->toKiloBytes($this->quantity());
     }
@@ -26,8 +42,16 @@ class MemoryMeasurement extends Measurement
      * @param $bytes
      * @return float
      */
-    protected function toKiloBytes($bytes)
+    protected function toKiloBytes($bytes): float
     {
-        return (float) round(($bytes / 1024), 2);
+        return round($bytes / 1024, 2);
+    }
+
+    /**
+     * @return float
+     */
+    public function quantity(): float
+    {
+        return $this->quantity;
     }
 }

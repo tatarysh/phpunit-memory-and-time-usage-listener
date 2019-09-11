@@ -20,11 +20,11 @@ The arguments you can define on the phpunit.xml file are:
 The installation for use this listener it's as easy as require it with composer as any other. I recommend to indicate the requirement only for dev.
 
 ```json
-
-require-dev{
-    "atrapalo/phpunit-memory-and-time-usage-listener": "dev-master"
+{
+  "require-dev": {
+    "tatarysh/phpunit-memory-and-time-usage-listener": "dev-master"
+  }
 }
-
 ```
 
 ## Usage examples:

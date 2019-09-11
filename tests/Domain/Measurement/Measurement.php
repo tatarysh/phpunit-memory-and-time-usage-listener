@@ -2,21 +2,23 @@
 
 namespace PhpunitMemoryAndTimeUsageListener\Domain\Measurement;
 
-class Measurement
+/**
+ * Interface Measurement
+ */
+interface Measurement
 {
-    /** @var  float */
-    private $quantity;
-    /** @var  string */
-    private $measurementUnit;
+    /**
+     * @return float
+     */
+    public function quantity(): float;
 
-    public function __construct($quantity, $unit)
-    {
-        $this->quantity = $quantity;
-        $this->measurementUnit = $unit;
-    }
+    /**
+     * @return string
+     */
+    public function unit(): string;
 
-    public function quantity()
-    {
-        return $this->quantity;
-    }
+    /**
+     * @return float
+     */
+    public function score(): float;
 }

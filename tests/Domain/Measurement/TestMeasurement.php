@@ -2,22 +2,48 @@
 
 namespace PhpunitMemoryAndTimeUsageListener\Domain\Measurement;
 
+/**
+ * Class TestMeasurement
+ */
 class TestMeasurement
 {
-    /** @var  string */
+    /**
+     * @var
+     */
     private $testName;
-    /** @var  string */
+
+    /**
+     * @var
+     */
     private $testFile;
-    /** @var TimeMeasurement  */
+
+    /**
+     * @var TimeMeasurement
+     */
     private $timeUsage;
-    /** @var MemoryMeasurement  */
+
+    /**
+     * @var MemoryMeasurement
+     */
     private $memoryUsage;
-    /** @var MemoryMeasurement  */
+
+    /**
+     * @var MemoryMeasurement
+     */
     private $memoryPeakDifference;
 
+    /**
+     * TestMeasurement constructor.
+     *
+     * @param  string  $name
+     * @param  string  $file
+     * @param  TimeMeasurement  $timeUsage
+     * @param  MemoryMeasurement  $memoryUsage
+     * @param  MemoryMeasurement  $memoryPeakUsage
+     */
     public function __construct(
-        $name,
-        $file,
+        string $name,
+        string $file,
         TimeMeasurement $timeUsage,
         MemoryMeasurement $memoryUsage,
         MemoryMeasurement $memoryPeakUsage
@@ -29,11 +55,13 @@ class TestMeasurement
         $this->memoryPeakDifference = $memoryPeakUsage;
     }
 
-    public function measuredInformationMessage()
+    /**
+     * @return string
+     */
+    public function measuredInformationMessage(): string
     {
-        return $this->testName . " in file " . $this->testFile
-        . " measurements: " . $this->timeUsage->timeInMilliseconds() . " milliseconds, "
-        . $this->memoryUsage->memoryInKiloBytes() . "Kb memory usage, "
-        . $this->memoryPeakDifference->memoryInKiloBytes() . "Kb memory peak difference";
+        return sprintf('%s in file %s measurements: %s milliseconds, %sKb memory usage, %sKb memory peak difference',
+            $this->testName, $this->testFile, $this->timeUsage->score(),
+            $this->memoryUsage->score(), $this->memoryPeakDifference->score());
     }
 }
